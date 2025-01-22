@@ -1,0 +1,12 @@
+game1: stalker 2
+game2: darkest dungeon
+game3: half life alyx
+game4: fallout 4
+game5: Counter strike 2
+game6: outlast
+game7: Left 4 dead 2
+game8: slay the spire
+game9: Amnesia the bunker
+game10: Crypt of the NecroDancer
+game11: Lobotomy Corporation
+game12: Library of Ruina

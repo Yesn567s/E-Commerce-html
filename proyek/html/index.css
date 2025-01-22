@@ -1,0 +1,273 @@
+*{
+    margin:0;
+    padding:0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+}
+
+.header nav {
+    width: 100%;
+    margin: 0 auto;
+}
+
+.nav-link {
+    color: black; 
+    text-decoration: none; 
+    transition: color 0.3s ease-in-out; /* Smooth transition */
+}
+
+.nav-link:hover {
+    color: red;
+}
+
+h2.title{
+    margin-top: 5%;
+    background-color: beige;
+    width: fit-content;
+}
+
+div.menu{
+    background-image: url("../image/banner.jpg");
+    background-size: cover;
+    height: 500px;
+}
+
+.landpg h1 {
+    display: flex;
+    align-items: center; /* Vertically aligns the text and image */
+    justify-content: space-between; /* Ensures the image stays on the right */
+    margin-left: 7%;
+    background-color: beige;
+    opacity: 85%;
+    margin-top: 10%;
+    width: fit-content;
+}
+
+a#btn1{
+    margin-left: 12%;
+    margin-top: 5px;
+} 
+
+a#btn2{
+    margin-left: 1%;
+    margin-top: 5px;
+} 
+
+div.isi{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+div.box1{
+    border: 2px solid black;
+    border-radius: 2%;
+    max-width: 864px;
+    width: fit-content;
+    margin-top: 3%;
+}
+
+div.box1 img{
+    width: 264px;
+    height: 265px;
+    border: 2px solid black;
+    border-radius: 2%;
+}
+
+div.box1 a h5{
+    margin-left: 2px;
+}
+
+div.box1 a h6{
+    margin-left: 4px;
+}
+
+s.pdown{
+    color: gray;
+}
+
+.image-container {
+    position: relative;
+    display: inline-block;
+    overflow: hidden; /* Ensures the zoom effect is contained within the container */
+}
+
+.image-container img {
+    width: 264px;
+    height: auto;
+    transition: transform 0.3s ease-in-out; /* Smooth zoom effect */
+}
+
+.image-container:hover img {
+    transform: scale(1.1); 
+}
+
+.view-btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none; /* Initially hidden */
+    background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent background */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    z-index: 10;
+    transition: opacity 0.3s ease-in-out; /* Smooth fade-in effect */
+}
+
+.image-container:hover .view-btn {
+    display: block; /* Show the button on hover */
+    opacity: 1;
+}
+
+div.box1 a h5{
+    color: black;
+}
+
+div.box1 a h5:hover{
+    color: brown;
+}
+
+div.box2{
+    border: 2px solid black;
+    background-color: darkgray;
+    display: flex;
+    justify-content: flex-start;
+    position: relative;
+}
+
+div.box2 img{
+    width: 640px;
+    height: 480px;
+    border: 2px solid black;
+}
+
+div.card{
+    /* background-color: darkgray; */
+    background: linear-gradient(to bottom right, #55527000, #383434); /* Example gradient */
+    padding: 10px;
+    border-radius: 8px; /* Optional rounded corners */
+    color: white; /* Adjust text color for contrast */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional shadow for better visibility */
+}
+
+a.user{
+    display: flex;
+    margin-right: 20px;
+}
+
+a.user img{
+    width: 72px;
+    height: 64px;
+    margin-left: 7px;
+    margin-top: 5px;
+}
+
+p.user1{
+    margin-left: 5px;
+    color: black;
+    text-decoration: none;
+}
+
+p.review{
+    color: #333; /* Darker text color */
+    margin-top: 5px;
+    margin-bottom: 10px;
+    margin-left: 8px;
+}
+
+#backToTopBtn {
+    position: fixed;
+    display: none; 
+    bottom: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 1000;
+}
+#backToTopBtn:hover {
+    background-color: #555;
+}
+
+div.footer{
+    height: 30px;
+    text-align:end;
+    background-color: #252626;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.8em;
+    width: 100%;
+    position: relative; /* Ensures footer stays at the bottom */
+    margin-top: 30px;
+    flex-shrink: 0;
+    bottom: 0;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+    .navbar-nav {
+        text-align: center;
+    }
+
+    .nav-item {
+        margin-bottom: 10px;
+    }
+
+    div.menu {
+        height: 300px;
+        padding: 20px;
+    }
+
+    div.landpg h1 {
+        font-size: 1.5rem;
+        margin: 10px 0;
+    }
+
+    div.isi {
+        gap: 10px;
+    }
+
+    div.box1 {
+        max-width: 200px;
+    }
+
+    div.box2 img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    div.footer {
+        font-size: 0.7em;
+    }
+}
+
+@media (max-width: 480px) {
+    .landpg h1 {
+        font-size: 1.2rem;
+    }
+
+    div.box1 {
+        max-width: 150px;
+    }
+
+    #backToTopBtn {
+        font-size: 12px;
+        padding: 5px 10px;
+    }
+}

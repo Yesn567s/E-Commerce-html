@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wordle</title>
+    <link rel="stylesheet" href="game1.css">
+</head>
+<body>
+    <div class="game-container">
+        <h1 class="title">Wordle</h1>
+        <div class="grid" id="grid"></div>
+        <div class="keyboard" id="keyboard"></div>
+        <button class="replay-button" id="replay-button">Play Again</button>
+        <button class="back-button" id="back-button">Back</button>
+    </div>
+    <div class="message" id="message"></div>
+
+    <script>
+        const WORDS = ['APPLE', 'BEACH', 'CHESS', 'DANCE', 'EAGLE', 'FENCE', 'GRAPE', 'HOUSE', 'IMAGE', 'JUICE', 'TANKS', 'BILLS', 'SHOCK', 'QUEEN', 'KINGS'];
+        const WORD_LENGTH = 5;
+        const MAX_GUESSES = 6;
+
+        class WordleGame {
+            constructor() {
+                this.initializeGame();
+                this.initializeGrid();
+                this.initializeKeyboard();
+                this.addEventListeners();
+            }
+
+            initializeGame() {
+                this.word = WORDS[Math.floor(Math.random() * WORDS.length)];
+                this.currentRow = 0;
+                this.currentTile = 0;
+                this.gameOver = false;
+                this.guesses = Array(MAX_GUESSES).fill().map(() => Array(WORD_LENGTH).fill(''));
+                document.getElementById('replay-button').style.display = 'none';
+            }
+
+            initializeGrid() {
+                const grid = document.getElementById('grid');
+                grid.innerHTML = ''; // Clear existing grid
+                for (let i = 0; i < MAX_GUESSES; i++) {
+                    const row = document.createElement('div');
+                    row.className = 'row';
+                    for (let j = 0; j < WORD_LENGTH; j++) {
+                        const tile = document.createElement('div');
+                        tile.className = 'tile';
+                        row.appendChild(tile);
+                    }
+                    grid.appendChild(row);
+                }
+            }
+
+            initializeKeyboard() {
+                const keyboard = document.getElementById('keyboard');
+                keyboard.innerHTML = ''; // Clear existing keyboard
+                const rows = [
+                    ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'],
+                    ['A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L'],
+                    ['Enter', 'Z', 'X', 'C', 'V', 'B', 'N', 'M', '←']
+                ];
+
+                rows.forEach(row => {
+                    const keyboardRow = document.createElement('div');
+                    keyboardRow.className = 'keyboard-row';
+                    
+                    row.forEach(key => {
+                        const button = document.createElement('button');
+                        button.textContent = key;
+                        button.className = 'key';
+                        if (key === 'Enter' || key === '←') {
+                            button.className += ' wide';
+                        }
+                        button.setAttribute('data-key', key);
+                        keyboardRow.appendChild(button);
+                    });
+                    
+                    keyboard.appendChild(keyboardRow);
+                });
+            }
+
+            addEventListeners() {
+                document.addEventListener('keydown', (e) => {
+                    this.handleKeyPress(e.key.toUpperCase());
+                });
+
+                document.getElementById('keyboard').addEventListener('click', (e) => {
+                    if (e.target.matches('button')) {
+                        this.handleKeyPress(e.target.getAttribute('data-key'));
+                    }
+                });
+
+                document.getElementById('replay-button').addEventListener('click', () => {
+                    this.resetGame();
+                });
+
+                document.getElementById('back-button').addEventListener('click', () => {
+                    window.location.href = 'aboutus.html#targetSection';
+                });
+            }
+
+            
+
+            resetGame() {
+                this.initializeGame();
+                this.initializeGrid();
+                document.getElementById('replay-button').style.display = 'none';
+            }
+
+            handleKeyPress(key) {
+                if (this.gameOver) return;
+
+                if (key === '←' || key === 'BACKSPACE') {
+                    this.deleteLetter();
+                } else if (key === 'ENTER') {
+                    this.submitGuess();
+                } else if (/^[A-Z]$/.test(key) && this.currentTile < WORD_LENGTH) {
+                    this.addLetter(key);
+                }
+            }
+
+            addLetter(letter) {
+                if (this.currentTile < WORD_LENGTH) {
+                    const tile = this.getTileElement(this.currentRow, this.currentTile);
+                    tile.textContent = letter;
+                    tile.classList.add('filled');
+                    this.guesses[this.currentRow][this.currentTile] = letter;
+                    this.currentTile++;
+                }
+            }
+
+            deleteLetter() {
+                if (this.currentTile > 0) {
+                    this.currentTile--;
+                    const tile = this.getTileElement(this.currentRow, this.currentTile);
+                    tile.textContent = '';
+                    tile.classList.remove('filled');
+                    this.guesses[this.currentRow][this.currentTile] = '';
+                }
+            }
+
+            submitGuess() {
+                if (this.currentTile !== WORD_LENGTH) {
+                    this.showMessage('Not enough letters');
+                    return;
+                }
+
+                const guess = this.guesses[this.currentRow].join('');
+                const evaluation = this.evaluateGuess(guess);
+                
+                this.colorTiles(evaluation);
+
+                if (guess === this.word) {
+                    this.gameOver = true;
+                    this.showMessage('Congratulations!');
+                    document.getElementById('replay-button').style.display = 'block';
+                } else if (this.currentRow === MAX_GUESSES - 1) {
+                    this.gameOver = true;
+                    this.showMessage(`Game Over! The word was ${this.word}`);
+                    document.getElementById('replay-button').style.display = 'block';
+                } else {
+                    this.currentRow++;
+                    this.currentTile = 0;
+                }
+            }
+
+            evaluateGuess(guess) {
+                const evaluation = Array(WORD_LENGTH).fill('absent');
+                const wordArray = this.word.split('');
+                const guessArray = guess.split('');
+
+                // First pass: mark correct letters
+                for (let i = 0; i < WORD_LENGTH; i++) {
+                    if (guessArray[i] === wordArray[i]) {
+                        evaluation[i] = 'correct';
+                        wordArray[i] = null;
+                        guessArray[i] = null;
+                    }
+                }
+
+                // Second pass: mark present letters
+                for (let i = 0; i < WORD_LENGTH; i++) {
+                    if (guessArray[i] !== null) {
+                        const index = wordArray.indexOf(guessArray[i]);
+                        if (index !== -1) {
+                            evaluation[i] = 'present';
+                            wordArray[index] = null;
+                        }
+                    }
+                }
+
+                return evaluation;
+            }
+
+            colorTiles(evaluation) {
+                for (let i = 0; i < WORD_LENGTH; i++) {
+                    const tile = this.getTileElement(this.currentRow, i);
+                    tile.classList.add(evaluation[i]);
+                }
+            }
+
+            getTileElement(row, col) {
+                return document.querySelector(`.grid .row:nth-child(${row + 1}) .tile:nth-child(${col + 1})`);
+            }
+
+            showMessage(text) {
+                const message = document.getElementById('message');
+                message.textContent = text;
+                message.style.display = 'block';
+                setTimeout(() => {
+                    message.style.display = 'none';
+                }, 2000);
+            }
+        }
+
+        // Start the game
+        new WordleGame();
+    </script>
+</body>
+</html>

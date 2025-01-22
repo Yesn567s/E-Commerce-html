@@ -1,0 +1,176 @@
+*{
+    margin:0;
+    padding:0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+}
+
+.header nav {
+    width: 100%;
+    margin: 0 auto;
+}
+
+.nav-link {
+    color: black; 
+    text-decoration: none; 
+    transition: color 0.3s ease-in-out; /* Smooth transition */
+}
+
+.nav-link:hover {
+    color: red; 
+}
+
+h1.about{
+    margin-top: 10%;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+h5.text-long{
+    text-align: center;
+}
+
+.image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+img.image-about1{
+    width: 1152px;
+    height: 480px;
+    border: 2px black solid;
+    margin-top: 3%;
+}
+
+div.box{
+    margin-top: 7%;
+    display: flex;
+    background-color: darkgray;
+    border: 2px black solid;
+}
+
+h5.text-long_1{
+    background: linear-gradient(to bottom right, #55527000, #383434);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+p.text{
+    margin-top: 13%;
+    margin-left: 2%;
+}
+
+p.text1{
+    margin-top: 8%;
+    margin-left: 3%;
+    font-size: 15px;
+}
+
+p.text2{
+    margin-left: 4%;
+    font-size: 15px;
+}
+
+p.text2 img{
+    width: 36px;
+    height: 24px;
+    border: 1px black solid;
+}
+
+img.text3{
+    margin-left: 3%;
+}
+
+div.image-container2 img{
+    width: 640px;
+    height: 480px;
+    border: 1px black solid;
+}
+
+#backToTopBtn {
+    position: fixed;
+    display: none; 
+    bottom: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 1000;
+}
+#backToTopBtn:hover {
+    background-color: #555;
+}
+
+div.footer{
+    height: 30px;
+    text-align:end;
+    background-color: #252626;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.8em;
+    width: 100%;
+    position: relative; /* Ensures footer stays at the bottom */
+    margin-top: 100px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    h1.about {
+        font-size: 1.5rem;
+        margin-top: 20px;
+        margin-bottom: 15px;
+    }
+
+    h5.text-long {
+        font-size: 1rem;
+        margin: 0 5px;
+    }
+
+    img.image-about1 {
+        width: 90%;
+        height: auto;
+    }
+
+    div.box {
+        padding: 10px;
+        gap: 10px;
+    }
+
+    p.text {
+        font-size: 0.9rem;
+    }
+
+    p.text1, p.text2 {
+        font-size: 0.9rem;
+    }
+
+    p.text2 img {
+        width: 30px;
+        height: 20px;
+    }
+
+    div.image-container2 img {
+        max-width: 90%;
+        height: auto;
+    }
+
+    #backToTopBtn {
+        padding: 8px 16px;
+        font-size: 14px;
+    }
+}

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Purchase</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="purchase.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <!-- Navbar -->
+            <nav class="navbar navbar-expand-lg bg-body-tertiary">
+                <!-- Image and logo -->
+                <div class="container-fluid">
+                  <a class="navbar-brand">
+                    <img src="../image/logo.png" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+                    FS Games!
+                  </a>
+                </div>
+                  <!-- navbar menu -->
+                  <div class="container-fluid">
+  
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                      <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                      <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                          <a class="nav-link" href="index.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="katalog.html">Catalog</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="aboutus.html">About us</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="regis.html">Register</a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </nav>
+        </div>
+        <div class="menu">
+            <h3 style="margin-top: 7%;">Select Payment Method:</h3>
+            <div class="box">
+                <div class="card">
+                    <div class="image-container">
+                        <input type="radio" name="payment-method" value="credit-cards" style="margin-left: 10px; margin-right: 15px;">
+                        <img src="../image/creditscard.png" alt="credit-cards">
+                        <a>Credit Cards</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="image-container">
+                        <input type="radio" name="payment-method" value="debit-cards" style="margin-left: 10px; margin-right: 15px;">
+                        <img src="../image/debitcard.png" alt="credit-cards">
+                        <a>Debit Cards</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="image-container">
+                        <input type="radio" name="payment-method" value="dana" style="margin-left: 10px; margin-right: 15px;">
+                        <img src="../image/dana.jpg" alt="credit-cards">
+                        <a>DANA</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="image-container">
+                        <input type="radio" name="payment-method" value="ovo" style="margin-left: 10px; margin-right: 15px;">
+                        <img src="../image/ovo.webp" alt="credit-cards">
+                        <a>OVO</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="image-container">
+                        <input type="radio" name="payment-method" value="paypal" style="margin-left: 10px; margin-right: 15px;">
+                        <img src="../image/paypal.png" alt="credit-cards">
+                        <a>Pay Pal</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="image-container">
+                        <input type="radio" name="payment-method" value="afterpay" style="margin-left: 10px; margin-right: 15px;">
+                        <img src="../image/afterpay.png" alt="credit-cards">
+                        <a>After Pay</a>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <input type="checkbox" id="checkmark" name="checkterms" value="checkterms-true">
+            <label for="checkterms"> I Have read and agreed to the terms and service of this website</label><br><br>
+            <button id="purchase-btn" type="button" class="btn btn-primary">Purchase</button>
+            <a href="terms.html" target="_blank"><button type="button" class="btn btn-info">Check Terms</button></a>
+        </div>
+        <div class="footer">copyright &copy; Reynard 2025</div>
+        <script>
+            document.getElementById('purchase-btn').addEventListener('click', function() {
+                // Check if a payment method is selected
+                const paymentSelected = document.querySelector('input[name="payment-method"]:checked');
+                const termsAgreed = document.getElementById('checkmark').checked;
+    
+                if (!paymentSelected) {
+                    alert('Please select a payment method before proceeding.');
+                } else if (!termsAgreed) {
+                    alert('You must agree to the terms and conditions before proceeding.');
+                } else {
+                    alert('Thank you for your purchase!');
+                    window.location.href = 'index.html';
+                }
+            });
+        </script>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>

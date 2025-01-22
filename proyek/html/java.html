@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Java Script Documentation</title>
+    <style>
+    *{
+    margin:0;
+    padding:0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+div.footer{
+    height: 30px;
+    text-align:end;
+    background-color: #252626;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.8em;
+    width: 100%;
+    position: relative; /* Ensures footer stays at the bottom */
+    margin-top: 30px;
+    flex-shrink: 0;
+    bottom: 0;
+}
+#backToTopBtn {
+    position: fixed;
+    display: none; 
+    bottom: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 1000;
+}
+#backToTopBtn:hover {
+    background-color: #555;
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="menu">
+            <h2>Java Script</h2>
+            <br>
+            <hr>
+            <br>
+            <a><h4>Back to top button</h4></a>
+            <br>
+            <p>
+                window.onscroll = function() { <br>
+                    const button = document.getElementById("backToTopBtn"); <br>
+                    if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {<br>
+                        button.style.display = "block";<br>
+                    } else {<br>
+                        button.style.display = "none";<br>
+                    } <br>
+                };<br><br>
+        
+                function scrollToTop() {<br>
+                    window.scrollTo({ top: 0, behavior: 'smooth' });<br>
+                } <br>
+            </p>
+            <p style="margin-top: 3%;">This Java script function is used to link a button function. <br>
+            so when the user pressed it the page will move back to the top of the screen</p>
+            <br>
+            <hr>
+            <h4 style="margin-bottom: 3%; margin-top: 1%;">Registration form check</h4>
+            <p>
+            // DOM Elements <br><br>
+      const emailInput = document.getElementById('emailInput');<br>
+      const passwordInput = document.getElementById('passwordInput');<br>
+      const loginButton = document.getElementById('loginButton');<br>
+      const showPasswordCheckbox = document.getElementById('showPassword');<br><br>
+  
+      // Regex for validating email format<br><br>
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;<br><br>
+  
+      // Regex for validating password<br><br>
+      const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,20}$/;<br><br>
+  
+      // Enable button if email and password are valid<br><br>
+      function toggleButtonState() {<br>
+          const isEmailValid = emailRegex.test(emailInput.value.trim());<br>
+          const isPasswordValid = passwordRegex.test(passwordInput.value.trim());<br>
+          loginButton.disabled = !(isEmailValid && isPasswordValid);<br>
+      }<br><br>
+  
+      // Show/hide password<br><br>
+      function togglePasswordVisibility() {<br>
+          if (showPasswordCheckbox.checked) {<br>
+              passwordInput.type = 'text';<br>
+          } else {<br>
+              passwordInput.type = 'password';<br>
+          }<br>
+      }<br><br>
+  
+      // Handle login button click<br><br>
+      function handleLogin() {<br>
+          alert("Login successful!");<br><br>
+  
+          // Clear user inputs<br><br>
+          emailInput.value = "";<br>
+          passwordInput.value = "";<br><br>
+  
+          // Reset button state<br><br>
+          toggleButtonState();<br>
+      }<br><br>
+  
+      // Event Listeners<br><br>
+      emailInput.addEventListener('input', toggleButtonState);<br>
+      passwordInput.addEventListener('input', toggleButtonState);<br>
+      showPasswordCheckbox.addEventListener('change', togglePasswordVisibility);<br>
+      loginButton.addEventListener('click', handleLogin);<br>
+        </p>
+        <h5 style="margin-top: 3%;">Code Explaination</h5>
+        <p style="margin-top: 5px;">
+            "const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;"" <br> "const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,20}$/;"" <br><br> <p>This is used to determine email and password validity, everytime an input is detected a test is run in the next function whether the current input pass the test or not
+        </p>
+        <p style="margin-top: 25px;">
+            function toggleButtonState() { <br>
+                const isEmailValid = emailRegex.test(emailInput.value.trim());<br>
+                const isPasswordValid = passwordRegex.test(passwordInput.value.trim());<br>
+                loginButton.disabled = !(isEmailValid && isPasswordValid);<br>
+            }<br><br>
+            When the registration page is visited the register button will be blocked because the email and password are still empty, and everytime an input is detected a test whether the email and the password pass the test run. if it do then allow the register button to be pressed, if not then keep waiting until it pass the test using the "toggleButtonState()" function. <br><br> after a successful registration the registration bar will be emptied and an alert will pop up, indicating the registration was a success.
+            <br><br>
+        </p>
+        <hr>
+        </p>
+        <h4 style="margin-bottom: 3%; margin-top: 1%;">Image and Video selector</h4>
+        <p>
+            function changeImage(imageSrc, isVideo) { <br>
+                const mainContent = document.getElementById('mainContent');<br>
+                
+                if (isVideo) {<br><br>
+                  // Create a new video element and replace the existing image<br><br>
+                  const videoElement = document.createElement('video');<br>
+                  videoElement.setAttribute('controls', '');<br>
+                  videoElement.setAttribute('autoplay', '');<br>
+                  videoElement.setAttribute('loop', '');<br>
+                  videoElement.src = imageSrc;<br><br>
+          
+                  // Clear the current content and append the video element<br><br>
+                  mainContent.innerHTML = '';<br>
+                  mainContent.appendChild(videoElement);<br>
+                } else {<br><br>
+                  // Create a new image element and replace the existing one<br><br>
+                  const imgElement = document.createElement('img');<br>
+                  imgElement.classList.add('main-image');<br>
+                  imgElement.src = imageSrc;<br><br>
+          
+                  // Clear the current content and append the image element<br><br>
+                  mainContent.innerHTML = '';<br>
+                  mainContent.appendChild(imgElement);<br>
+                }<br>
+              }<br><br>
+        </p>
+        <h5 style="margin-top: 3%;">Purpose</h5>
+        <p>The changeImage function dynamically updates the content of a container (mainContent) to display either an image or a video.</p>
+        <h5 style="margin-top: 3%;">Code Explaination</h5>
+        <p>1. Arguments:</p>
+        <br>
+        <ul>
+            <li>imageSrc: The source URL for the image or video.</li>
+            <li>isVideo: A boolean indicating if the content is a video (true) or an image (false).</li>
+        </ul>
+        <br>
+        <p>2. Get Target Container:</p>
+        <p>"const mainContent = document.getElementById('mainContent');" <~~ This selects the container where the new content will be displayed.</p>
+        <br>
+        <p>3. Handle Video or Image:</p>
+        <p>If isVideo is true:
+            A "video" element is created with attributes (controls, autoplay, loop) and the src set to imageSrc.
+            If isVideo is false:
+            An "img" element is created, styled with a class (main-image), and its src set to imageSrc.</p>
+        <br>
+        <p>4. Replace content</p>
+        <p>mainContent.innerHTML = '';<br>
+            mainContent.appendChild(newElement); <br><br> The current content is cleared, and the new element (video or image) is added.
+
+        </p>
+        <hr>
+        <h4 style="margin-bottom: 3%; margin-top: 1%;">Game Wordle</h4>
+        <p>
+            const WORDS = ['APPLE', 'BEACH', 'CHESS', 'DANCE', 'EAGLE', 'FENCE', 'GRAPE', 'HOUSE', 'IMAGE', 'JUICE', 'TANKS', 'BILLS', 'SHOCK', 'QUEEN', 'KINGS'];
+        const WORD_LENGTH = 5; <br>
+        const MAX_GUESSES = 6; <br>
+
+        class WordleGame {<br>
+            constructor() {<br>
+                this.initializeGame();<br>
+                this.initializeGrid();<br>
+                this.initializeKeyboard();<br>
+                this.addEventListeners();<br>
+            }<br>
+
+            initializeGame() {<br>
+                this.word = WORDS[Math.floor(Math.random() * WORDS.length)];<br>
+                this.currentRow = 0;<br>
+                this.currentTile = 0;<br>
+                this.gameOver = false;<br>
+                this.guesses = Array(MAX_GUESSES).fill().map(() => Array(WORD_LENGTH).fill(''));
+                document.getElementById('replay-button').style.display = 'none';<br>
+            }<br>
+
+            initializeGrid() {<br>
+                const grid = document.getElementById('grid');<br>
+                grid.innerHTML = ''; // Clear existing grid<br>
+                for (let i = 0; i < MAX_GUESSES; i++) {<br>
+                    const row = document.createElement('div');<br>
+                    row.className = 'row';<br>
+                    for (let j = 0; j < WORD_LENGTH; j++) {<br>
+                        const tile = document.createElement('div');<br>
+                        tile.className = 'tile';<br>
+                        row.appendChild(tile);<br>
+                    }<br>
+                    grid.appendChild(row);<br>
+                }<br>
+            }<br>
+
+            initializeKeyboard() {<br>
+                const keyboard = document.getElementById('keyboard');<br>
+                keyboard.innerHTML = ''; // Clear existing keyboard<br>
+                const rows = [
+                    ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'],
+                    ['A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L'],
+                    ['Enter', 'Z', 'X', 'C', 'V', 'B', 'N', 'M', '←']
+                ];<br>
+
+                rows.forEach(row => {<br>
+                    const keyboardRow = document.createElement('div');<br>
+                    keyboardRow.className = 'keyboard-row';<br>
+                    
+                    row.forEach(key => {<br>
+                        const button = document.createElement('button');<br>
+                        button.textContent = key;<br>
+                        button.className = 'key';<br>
+                        if (key === 'Enter' || key === '←') {
+                            button.className += ' wide';
+                        }<br>
+                        button.setAttribute('data-key', key);<br>
+                        keyboardRow.appendChild(button);<br>
+                    });<br>
+                    
+                    keyboard.appendChild(keyboardRow);<br>
+                });<br>
+            }<br>
+
+            addEventListeners() {<br>
+                document.addEventListener('keydown', (e) => {<br>
+                    this.handleKeyPress(e.key.toUpperCase());<br>
+                });<br>
+
+                document.getElementById('keyboard').addEventListener('click', (e) => {<br>
+                    if (e.target.matches('button')) {<br>
+                        this.handleKeyPress(e.target.getAttribute('data-key'));<br>
+                    }<br>
+                });<br>
+
+                document.getElementById('replay-button').addEventListener('click', () => {<br>
+                    this.resetGame();<br>
+                });<br>
+
+                document.getElementById('back-button').addEventListener('click', () => {<br>
+                    window.location.href = 'aboutus.html#targetSection';<br>
+                });<br>
+            }<br>
+
+            
+
+            resetGame() {<br>
+                this.initializeGame();<br>
+                this.initializeGrid();<br>
+                document.getElementById('replay-button').style.display = 'none';<br>
+            }<br>
+
+            handleKeyPress(key) {<br>
+                if (this.gameOver) return;<br>
+
+                if (key === '←' || key === 'BACKSPACE') {<br>
+                    this.deleteLetter();<br>
+                } else if (key === 'ENTER') {<br>
+                    this.submitGuess();<br>
+                } else if (/^[A-Z]$/.test(key) && this.currentTile < WORD_LENGTH) {<br>
+                    this.addLetter(key);<br>
+                }<br>
+            }<br>
+
+            addLetter(letter) {<br>
+                if (this.currentTile < WORD_LENGTH) {<br>
+                    const tile = this.getTileElement(this.currentRow, this.currentTile);<br>
+                    tile.textContent = letter;<br>
+                    tile.classList.add('filled');<br>
+                    this.guesses[this.currentRow][this.currentTile] = letter;<br>
+                    this.currentTile++;<br>
+                }<br>
+            }<br>
+
+            deleteLetter() {<br>
+                if (this.currentTile > 0) {<br>
+                    this.currentTile--;<br>
+                    const tile = this.getTileElement(this.currentRow, this.currentTile);<br>
+                    tile.textContent = '';<br>
+                    tile.classList.remove('filled');<br>
+                    this.guesses[this.currentRow][this.currentTile] = '';<br>
+                }<br>
+            }<br>
+
+            submitGuess() {<br>
+                if (this.currentTile !== WORD_LENGTH) {<br>
+                    this.showMessage('Not enough letters');<br>
+                    return;<br>
+                }<br>
+
+                const guess = this.guesses[this.currentRow].join('');<br>
+                const evaluation = this.evaluateGuess(guess);<br>
+                <br>
+                this.colorTiles(evaluation);<br>
+
+                if (guess === this.word) {<br>
+                    this.gameOver = true;<br>
+                    this.showMessage('Congratulations!');<br>
+                    document.getElementById('replay-button').style.display = 'block';<br>
+                } else if (this.currentRow === MAX_GUESSES - 1) {<br>
+                    this.gameOver = true;<br>
+                    this.showMessage(`Game Over! The word was ${this.word}`);<br>
+                    document.getElementById('replay-button').style.display = 'block';<br>
+                } else {<br>
+                    this.currentRow++;<br>
+                    this.currentTile = 0;<br>
+                }<br>
+            }<br>
+
+            evaluateGuess(guess) {<br>
+                const evaluation = Array(WORD_LENGTH).fill('absent');<br>
+                const wordArray = this.word.split('');<br>
+                const guessArray = guess.split('');<br><br>
+
+                // First pass: mark correct letters<br><br>
+                for (let i = 0; i < WORD_LENGTH; i++) {<br>
+                    if (guessArray[i] === wordArray[i]) {<br>
+                        evaluation[i] = 'correct';<br>
+                        wordArray[i] = null;<br>
+                        guessArray[i] = null;<br>
+                    }<br>
+                }<br><br>
+
+                // Second pass: mark present letters<br><br>
+                for (let i = 0; i < WORD_LENGTH; i++) {<br>
+                    if (guessArray[i] !== null) {<br>
+                        const index = wordArray.indexOf(guessArray[i]);<br>
+                        if (index !== -1) {<br>
+                            evaluation[i] = 'present';<br>
+                            wordArray[index] = null;<br>
+                        }<br>
+                    }<br>
+                }<br>
+
+                return evaluation;<br>
+            }<br>
+            <br>
+            colorTiles(evaluation) {<br>
+                for (let i = 0; i < WORD_LENGTH; i++) {<br>
+                    const tile = this.getTileElement(this.currentRow, i);<br>
+                    tile.classList.add(evaluation[i]);<br>
+                }<br>
+            }<br>
+
+            getTileElement(row, col) {<br>
+                return document.querySelector(`.grid .row:nth-child(${row + 1}) .tile:nth-child(${col + 1})`);<br>
+            }<br>
+
+            showMessage(text) {<br>
+                const message = document.getElementById('message');<br>
+                message.textContent = text;<br>
+                message.style.display = 'block';<br>
+                setTimeout(() => {<br>
+                    message.style.display = 'none';<br>
+                }, 2000);<br>
+            }<br>
+        }<br><br>
+
+        // Start the game<br><br>
+        new WordleGame();<br><br>
+        </p>
+        <br>
+        <h5 style="margin-top: 3%;">Code Explaination</h5>
+        <p>1. Game Initialization:</p>
+        <p>The game picks a random word from the WORDS array. <br>
+            It sets up the game grid and keyboard dynamically in the HTML.</p>
+        <br>
+        <p>2. Event Handling:</p>
+        <p>Keyboard inputs and on-screen button clicks are captured to add, delete, or submit letters.
+            <br>A "replay" button resets the game, while a "back" button navigates to another page.</p>
+        <br>
+        <p>3. Gameplay:</p>
+        <p>Players type guesses, and each guess is checked against the secret word. <br>
+            Tiles are colored to indicate correctness: correct (right letter, right position), present (right letter, wrong position), or absent.
+        </p>
+        <br>
+        <p>4. Feedback:</p>
+        <p>If the guess matches the word, the game congratulates the player. <br>
+            If the player runs out of guesses, the correct word is revealed. <br>
+            Messages and visual feedback are provided throughout.</p>
+        <p>5. Utility Functions:</p>
+        <p>Handles grid and keyboard interactions, evaluates guesses, and manages state (rows, tiles, and game status).</p>
+        <br>
+        <p>6. Start Game</p>
+        <p>The game begins automatically with new WordleGame().</p>
+        <hr>
+        <h4 style="margin-bottom: 3%; margin-top: 1%;">Game Memory-Card</h4>
+        <p>
+        const emojis = ['🎨', '🎮', '🎲', '🎸', '🎭', '🎪']; <br>
+        const gameBoard = document.getElementById('gameBoard');<br>
+        const movesDisplay = document.getElementById('moves');<br>
+        const matchesDisplay = document.getElementById('matches');<br>
+        const winMessage = document.getElementById('winMessage');<br>
+        const finalMovesDisplay = document.getElementById('finalMoves');<br>
+        
+        let cards = [];<br>
+        let flippedCards = [];<br>
+        let moves = 0;<br>
+        let matches = 0;<br>
+        let canFlip = true;<br>
+        let touchStartTime = 0;<br>
+
+        function createCards() {<br>
+            const doubledEmojis = [...emojis, ...emojis];<br>
+            const shuffledEmojis = doubledEmojis.sort(() => Math.random() - 0.5);<br>
+            
+            shuffledEmojis.forEach((emoji, index) => {<br>
+                const card = document.createElement('div');<br>
+                card.className = 'card';<br>
+                card.innerHTML = `<br>
+                    <div class="card-front"></div><br>
+                    <div class="card-back">${emoji}</div><br>
+                `;<br>
+                card.dataset.value = emoji;<br>
+                card.dataset.index = index;<br><br>
+                
+                // Add both click and touch events<br><br>
+                card.addEventListener('click', handleCardInteraction);<br>
+                card.addEventListener('touchstart', handleTouchStart, { passive: true });<br>
+                card.addEventListener('touchend', handleTouchEnd, { passive: true });<br>
+                
+                gameBoard.appendChild(card);<br>
+                cards.push(card);<br>
+            });<br>
+        }<br><br>
+
+        function handleTouchStart(e) {<br>
+            touchStartTime = Date.now();<br>
+        }<br><br>
+
+        function handleTouchEnd(e) {<br>
+            const touchDuration = Date.now() - touchStartTime;<br>
+            // Only process quick taps (less than 200ms)<br>
+            if (touchDuration < 200) {<br>
+                handleCardInteraction.call(this, e);<br>
+            }<br>
+        }<br><br>
+
+        function handleCardInteraction(e) {<br>
+            e.preventDefault();<br>
+            if (!canFlip) return;<br>
+            if (flippedCards.length === 2) return;<br>
+            if (this.classList.contains('flipped')) return;<br><br>
+
+            this.classList.add('flipped');<br>
+            flippedCards.push(this);<br>
+            if (flippedCards.length === 2) {<br>
+                moves++;<br>
+                movesDisplay.textContent = moves;<br>
+                canFlip = false;<br><br>
+
+                if (flippedCards[0].dataset.value === flippedCards[1].dataset.value) {<br>
+                    matches++;<br>
+                    matchesDisplay.textContent = matches;<br>
+                    flippedCards = [];<br>
+                    canFlip = true;<br><br>
+
+                    if (matches === emojis.length) {<br>
+                        setTimeout(() => {<br>
+                            winMessage.classList.add('show');<br>
+                            finalMovesDisplay.textContent = moves;<br>
+                        }, 500);<br>
+                    }<br>
+                } else {<br>
+                    setTimeout(() => {<br>
+                        flippedCards.forEach(card => card.classList.remove('flipped'));<br>
+                        flippedCards = [];<br>
+                        canFlip = true;<br>
+                    }, 1000);<br>
+                }<br>
+            }<br>
+        }<br><br>
+
+        function resetGame() {<br>
+            gameBoard.innerHTML = '';<br>
+            cards = [];<br>
+            flippedCards = [];<br>
+            moves = 0;<br>
+            matches = 0;<br>
+            canFlip = true;<br>
+            movesDisplay.textContent = moves;<br>
+            matchesDisplay.textContent = matches;<br>
+            winMessage.classList.remove('show');<br>
+            createCards();<br>
+        }<br><br>
+
+        // Prevent double tap zoom on iOS<br><br>
+        document.addEventListener('touchmove', function(e) {<br>
+            if (e.touches.length > 1) {<br>
+                e.preventDefault();<br>
+            }<br>
+        }, { passive: false });<br><br>
+
+        // Initialize game<br><br>
+        createCards();<br>
+        </p>
+        <h5 style="margin-top: 3%;">Code Explaination</h5>
+        <p>1. Game Setup:</p>
+        <p>Emojis are duplicated, shuffled, and turned into cards (createCards). <br>
+            Each card has a front (hidden) and back (showing an emoji).</p>
+            <br>
+        <p>2. Interactions:</p>
+        <p>Cards can be flipped using clicks or quick touch events. <br> Prevents invalid flips (e.g., already flipped, more than two cards). <br> Tracks flipped cards, moves, and matches.</p>
+        <br>
+        <p>3. Matching Logic</p>
+        <p>If two flipped cards match: <br>
+            The cards stay flipped, and the match count increases.
+            If all matches are found, the win message is displayed.</p>
+            <p>If they don’t match:
+                Cards flip back after a delay.</p>
+        <br>
+        <p>4. Reset Game:</p>
+        <p>resetGame clears the board and resets the state to start a new game.</p>
+        </div>
+        <!-- le button -->
+        <button id="backToTopBtn" onclick="scrollToTop()">Back to Top</button>
+        <!-- go back btn function -->
+        <script>
+            window.onscroll = function() {
+                const button = document.getElementById("backToTopBtn");
+                if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+                    button.style.display = "block";
+                } else {
+                    button.style.display = "none";
+                }
+            };
+    
+            function scrollToTop() {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        </script>
+        <div class="footer">copyright &copy; Reynard 2025</div>
+    </div>
+</body>
+</html>
